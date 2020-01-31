@@ -51,4 +51,10 @@ opentutorials.org = host (domain)
 3000 = (port)
 main = path
 main?id=HTML&page=12 = query string
+
+{CRUD}
+C : CREATE
+R : READ
+U : UPDATE
+D : DELETE
 */
