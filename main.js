@@ -1,4 +1,4 @@
-var http = require('http'); //protocol
+var http = require('http');
 var fs = require('fs');
 var url = require('url');
 
@@ -7,50 +7,68 @@ var app = http.createServer(function (request, response) {
     var queryData = url
         .parse(_url, true)
         .query;
+    var pathname = url
+        .parse(_url, true)
+        .pathname;
     var title = queryData.id;
-    console.log(queryData.id);
-    if (_url == '/') {
-        title = 'Welcome';
+
+    if (pathname === '/') {
+        if (queryData.id === undefined) {
+            fs.readFile(`data/${queryData.id}`, 'utf8', function (err, description) {
+
+                var title = "welcome";
+                var description = "hello, Node.js";
+                var template = `
+      <!doctype html>
+      <html>
+      <head>
+        <title>WEB1 - ${title}</title>
+        <meta charset="utf-8">
+      </head>
+      <body>
+        <h1><a href="/">WEB</a></h1>
+        <ul>
+          <li><a href="/?id=HTML">HTML</a></li>
+          <li><a href="/?id=CSS">CSS</a></li>
+          <li><a href="/?id=JavaScript">JavaScript</a></li>
+        </ul>
+        <h2>${title}</h2>
+        <p>${description}</p>
+      </body>
+      </html>
+      `;
+                response.writeHead(200);
+                response.end(template);
+            });
+        } else {
+            fs.readFile(`data/${queryData.id}`, 'utf8', function (err, description) {
+                var template = `
+        <!doctype html>
+        <html>
+        <head>
+          <title>WEB1 - ${title}</title>
+          <meta charset="utf-8">
+        </head>
+        <body>
+          <h1><a href="/">WEB</a></h1>
+          <ul>
+            <li><a href="/?id=HTML">HTML</a></li>
+            <li><a href="/?id=CSS">CSS</a></li>
+            <li><a href="/?id=JavaScript">JavaScript</a></li>
+          </ul>
+          <h2>${title}</h2>
+          <p>${description}</p>
+        </body>
+        </html>
+        `;
+                response.writeHead(200);
+                response.end(template);
+            });
+        }
+    } else {
+        response.writeHead(404);
+        response.end('Not found');
     }
-    if (_url == '/favicon.ico') {
-        return response.writeHead(404);
-    }
-    response.writeHead(200);
-    fs.readFile(`data/${queryData.id}`, 'utf8', function (err, description) {
-        var template = `
-    <!doctype html>
-    <html>
-    <head>
-      <title>WEB1 - ${title}</title>
-      <meta charset="utf-8">
-    </head>
-    <body>
-      <h1><a href="/">WEB</a></h1>
-      <ul>
-        <li><a href="/?id=HTML">HTML</a></li>
-        <li><a href="/?id=CSS">CSS</a></li>
-        <li><a href="/?id=JavaScript">JavaScript</a></li>
-      </ul>
-      <h2>${title}</h2>
-      <p>${description}</p>
-    </body>
-    </html>
-    `;
-        response.end(template);
-    })
+
 });
-app.listen(80); // port
-
-/* http://opentutorials.org:3000/main?id=HTML&page=12
-
-http = protocol
-opentutorials.org = host (domain)
-3000 = (port)
-main = path
-main?id=HTML&page=12 = query string
-
-{CRUD}
-C : CREATE
-R : READ
-U : UPDATE
-D : DELETE */
+app.listen(3000);
