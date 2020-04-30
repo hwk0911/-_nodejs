@@ -9,6 +9,8 @@ function sum (a, b) {
     return a + b;
 }
 
+console.log(sum(1, 2));
+
 /*
 sum (2, 4) = arguments
 function sum (a, b) = parameter
