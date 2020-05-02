@@ -5,8 +5,8 @@ var qs = require('querystring');
 
 var template = {
   html:
-  function templateHTML(title, list, body, control) {
-    return `
+    function templateHTML(title, list, body, control) {
+      return `
     <!doctype html>
     <html>
     <head>
@@ -21,18 +21,18 @@ var template = {
     </body>
     </html>
     `;
-  },
+    },
   list:
-  function templateList(filelist) {
-    var list = '<ul>';
-    var i = 0;
-    while (i < filelist.length) {
-      list = list + `<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`;
-      i = i + 1;
+    function templateList(filelist) {
+      var list = '<ul>';
+      var i = 0;
+      while (i < filelist.length) {
+        list = list + `<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`;
+        i = i + 1;
+      }
+      list = list + '</ul>';
+      return list;
     }
-    list = list + '</ul>';
-    return list;
-  }
 }
 
 var app = http.createServer(function (request, response) {
@@ -157,7 +157,7 @@ var app = http.createServer(function (request, response) {
       var post = qs.parse(body);
       var id = post.id;
       fs.unlink(`data/${id}`, function (err) {
-        response.writeHead(302, {Location : '/'});
+        response.writeHead(302, { Location: '/' });
         response.end();
       });
     });
