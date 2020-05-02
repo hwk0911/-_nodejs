@@ -1,0 +1,25 @@
+{
+  "name": "life_coding-nodejs",
+  "version": "1.0.0",
+  "description": "URL : [생활코딩 YOUTUBE](https://www.youtube.com/watch?v=3RS_A87IAPA&list=PLuHgQVnccGMA9QQX5wqj6ThK7t2tsGxjm&index=1)",
+  "main": "main.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hwk0911/Life_Coding-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hwk0911/Life_Coding-nodejs/issues"
+  },
+  "homepage": "https://github.com/hwk0911/Life_Coding-nodejs#readme",
+  "dependencies": {
+    "sanitize-html": "^1.23.0"
+  }
+}
