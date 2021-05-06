@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/hwk0911/Life_Coding-nodejs#readme",
   "dependencies": {
-    "sanitize-html": "^1.23.0"
+    "sanitize-html": "^2.3.2"
   }
 }
